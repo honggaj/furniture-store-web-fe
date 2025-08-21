@@ -1,1 +1,68 @@
-<p>user-list works!</p>
+<!-- Toolbar -->
+<div class="flex flex-col sm:flex-row justify-between items-center mb-4 gap-2">
+  <!-- Search -->
+<div class="relative w-full sm:w-64">
+  <span class="absolute left-3 top-1/2 -translate-y-1/2 text-blue-400 text-lg">
+    <i class="fas fa-search"></i>
+  </span>
+  <input  type="text" placeholder="Tìm kiếm..." [(ngModel)]="keyword" (input)="onSearch()"
+         class="w-full pl-10 pr-3 py-2 border text-gray-400 border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-400" />
+</div>
+
+
+  <!-- Add button -->
+  <button (click)="addUser()"
+    class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 transition-colors cursor-pointer">
+    + Thêm người dùng
+  </button>
+</div>
+
+<!-- Table -->
+<div class="overflow-x-auto shadow-sm">
+  <table class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="px-4 py-2 text-left text-gray-600">ID</th>
+        <th class="px-4 py-2 text-left text-gray-600">Tên</th>
+        <th class="px-4 py-2 text-left text-gray-600">Email</th>
+        <th class="px-4 py-2 text-left text-gray-600">SĐT</th>
+        <th class="px-4 py-2 text-left text-gray-600">Địa chỉ</th>
+        <th class="px-4 py-2 text-left text-gray-600">Role</th>
+        <th class="px-4 py-2 text-left text-gray-600">Trạng thái</th>
+        <th class="px-4 py-2 text-left text-gray-600">Ngày tạo</th>
+        <th class="px-4 py-2 text-center text-gray-600">Thao tác</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      <tr *ngFor="let user of users" class="hover:bg-gray-50 transition-colors">
+        <td class="px-4 py-2">{{ user.userId }}</td>
+        <td class="px-4 py-2 ">{{ user.name }}</td>
+        <td class="px-4 py-2">{{ user.email }}</td>
+        <td class="px-4 py-2">{{ user.phone || '-' }}</td>
+        <td class="px-4 py-2">{{ user.address || '-' }}</td>
+        <td class="px-4 py-2 capitalize">{{ user.role }}</td>
+
+        <td class="px-4 py-2">
+          <select [(ngModel)]="user.isActive" (change)="onStatusChange(user)"
+            class="border border-gray-300 px-2 py-1 focus:outline-none focus:ring-1 cursor-pointer"
+            [ngClass]="user.isActive ? 'text-green-600' : 'text-red-600'">
+            <option [ngValue]="true">Hoạt động</option>
+            <option [ngValue]="false">Không hoạt động</option>
+          </select>
+        </td>
+
+        <td class="px-4 py-2">{{ user.createdAt | date:'dd/MM/yyyy HH:mm' }}</td>
+
+        <!-- Thao tác -->
+        <td class="px-4 py-2 text-center flex justify-center gap-2">
+          <button (click)="editUser(user)" class="text-blue-500 hover:text-blue-700 cursor-pointer">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button (click)="deleteUser(user.userId!)" class="text-red-500 hover:text-red-700 cursor-pointer">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

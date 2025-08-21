@@ -8,20 +8,20 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     children: [
       {
-        path: 'users',
+        path: 'users-management',
         loadChildren: () =>
           import('./pages/users-management/users-management.module').then(
             m => m.UsersManagementModule
           ),
       },
       {
-        path: 'products',
+        path: 'products-management',
         loadChildren: () =>
           import('./pages/products-management/products-management.module').then(
             m => m.ProductsManagementModule
           ),
       },
-      { path: '', redirectTo: 'users', pathMatch: 'full' },
+      { path: '', redirectTo: 'users-management', pathMatch: 'full' },
     ]
   }
 ];

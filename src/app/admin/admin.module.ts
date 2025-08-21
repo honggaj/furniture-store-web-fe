@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { UsersManagementModule } from './pages/users-management/users-management.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { UsersManagementModule } from './pages/users-management/users-management
   imports: [
     CommonModule,
     AdminRoutingModule,
-    UsersManagementModule
+    UsersManagementModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

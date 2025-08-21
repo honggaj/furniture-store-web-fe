@@ -37,8 +37,9 @@
               }
             ],
             "styles": [
-               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "src/styles.css"
+              "src/styles.css",
+           
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": []
           },
@@ -67,6 +68,9 @@
           "defaultConfiguration": "production"
         },
         "serve": {
+          "options": {
+            "proxyConfig": "proxy.conf.json"
+          },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
@@ -96,16 +100,43 @@
               }
             ],
             "styles": [
-               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "src/styles.css"
-            ],
-            "scripts": []
+                "src/styles.css",
+         
+                "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+              ],
+              "scripts": []
+            }
           }
         }
       }
+    },
+    "cli": {
+      "analytics": "f26f36bf-5a8b-419e-a061-2808ca21889b"
+    },
+    "schematics": {
+      "@schematics/angular:component": {
+        "type": "component"
+      },
+      "@schematics/angular:directive": {
+        "type": "directive"
+      },
+      "@schematics/angular:service": {
+        "type": "service"
+      },
+      "@schematics/angular:guard": {
+        "typeSeparator": "."
+      },
+      "@schematics/angular:interceptor": {
+        "typeSeparator": "."
+      },
+      "@schematics/angular:module": {
+        "typeSeparator": "."
+      },
+      "@schematics/angular:pipe": {
+        "typeSeparator": "."
+      },
+      "@schematics/angular:resolver": {
+        "typeSeparator": "."
+      }
     }
-  },
-  "cli": {
-    "analytics": "f26f36bf-5a8b-419e-a061-2808ca21889b"
   }
-}
