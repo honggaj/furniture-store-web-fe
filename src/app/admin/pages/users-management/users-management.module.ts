@@ -25,14 +25,8 @@ import { CardModule } from 'primeng/card';
   imports: [
     CommonModule,
     UsersManagementRoutingModule,
-        TableModule,
-    PaginatorModule,
-    ButtonModule,
-    InputTextModule,
     FormsModule,
-    ToolbarModule,
-    ReactiveFormsModule,
-    CardModule,
+    ReactiveFormsModule
   ]
 })
 export class UsersManagementModule { }

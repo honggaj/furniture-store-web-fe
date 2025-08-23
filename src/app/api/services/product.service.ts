@@ -15,8 +15,12 @@ import { apiProductGet$Json } from '../fn/product/api-product-get-json';
 import { ApiProductGet$Json$Params } from '../fn/product/api-product-get-json';
 import { apiProductGet$Plain } from '../fn/product/api-product-get-plain';
 import { ApiProductGet$Plain$Params } from '../fn/product/api-product-get-plain';
+import { apiProductIdActivePatch } from '../fn/product/api-product-id-active-patch';
+import { ApiProductIdActivePatch$Params } from '../fn/product/api-product-id-active-patch';
 import { apiProductIdDelete } from '../fn/product/api-product-id-delete';
 import { ApiProductIdDelete$Params } from '../fn/product/api-product-id-delete';
+import { apiProductIdFeaturePatch } from '../fn/product/api-product-id-feature-patch';
+import { ApiProductIdFeaturePatch$Params } from '../fn/product/api-product-id-feature-patch';
 import { apiProductIdGet$Json } from '../fn/product/api-product-id-get-json';
 import { ApiProductIdGet$Json$Params } from '../fn/product/api-product-id-get-json';
 import { apiProductIdGet$Plain } from '../fn/product/api-product-id-get-plain';
@@ -29,6 +33,10 @@ import { apiProductPost$Json } from '../fn/product/api-product-post-json';
 import { ApiProductPost$Json$Params } from '../fn/product/api-product-post-json';
 import { apiProductPost$Plain } from '../fn/product/api-product-post-plain';
 import { ApiProductPost$Plain$Params } from '../fn/product/api-product-post-plain';
+import { apiProductSearchGet$Json } from '../fn/product/api-product-search-get-json';
+import { ApiProductSearchGet$Json$Params } from '../fn/product/api-product-search-get-json';
+import { apiProductSearchGet$Plain } from '../fn/product/api-product-search-get-plain';
+import { ApiProductSearchGet$Plain$Params } from '../fn/product/api-product-search-get-plain';
 import { ProductResponse } from '../models/product-response';
 
 @Injectable({ providedIn: 'root' })
@@ -246,6 +254,103 @@ export class ProductService extends BaseService {
    */
   apiProductIdDelete(params: ApiProductIdDelete$Params, context?: HttpContext): Observable<void> {
     return this.apiProductIdDelete$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `apiProductSearchGet()` */
+  static readonly ApiProductSearchGetPath = '/api/Product/search';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiProductSearchGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductSearchGet$Plain$Response(params?: ApiProductSearchGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ProductResponse>>> {
+    return apiProductSearchGet$Plain(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiProductSearchGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductSearchGet$Plain(params?: ApiProductSearchGet$Plain$Params, context?: HttpContext): Observable<Array<ProductResponse>> {
+    return this.apiProductSearchGet$Plain$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<ProductResponse>>): Array<ProductResponse> => r.body)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiProductSearchGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductSearchGet$Json$Response(params?: ApiProductSearchGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ProductResponse>>> {
+    return apiProductSearchGet$Json(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiProductSearchGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductSearchGet$Json(params?: ApiProductSearchGet$Json$Params, context?: HttpContext): Observable<Array<ProductResponse>> {
+    return this.apiProductSearchGet$Json$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<ProductResponse>>): Array<ProductResponse> => r.body)
+    );
+  }
+
+  /** Path part for operation `apiProductIdFeaturePatch()` */
+  static readonly ApiProductIdFeaturePatchPath = '/api/Product/{id}/feature';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiProductIdFeaturePatch()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductIdFeaturePatch$Response(params: ApiProductIdFeaturePatch$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return apiProductIdFeaturePatch(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiProductIdFeaturePatch$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductIdFeaturePatch(params: ApiProductIdFeaturePatch$Params, context?: HttpContext): Observable<void> {
+    return this.apiProductIdFeaturePatch$Response(params, context).pipe(
+      map((r: StrictHttpResponse<void>): void => r.body)
+    );
+  }
+
+  /** Path part for operation `apiProductIdActivePatch()` */
+  static readonly ApiProductIdActivePatchPath = '/api/Product/{id}/active';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiProductIdActivePatch()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductIdActivePatch$Response(params: ApiProductIdActivePatch$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+    return apiProductIdActivePatch(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiProductIdActivePatch$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiProductIdActivePatch(params: ApiProductIdActivePatch$Params, context?: HttpContext): Observable<void> {
+    return this.apiProductIdActivePatch$Response(params, context).pipe(
       map((r: StrictHttpResponse<void>): void => r.body)
     );
   }

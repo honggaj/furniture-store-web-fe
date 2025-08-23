@@ -20,7 +20,7 @@ export class AdminLayoutComponent {
     title: 'Quản lý',
     items: [
       { label: 'Người dùng', icon: 'fas fa-undo-alt', route: '/admin/users-management' },
-      { label: 'Sản phẩm', icon: 'fas fa-list-alt', route: '/products-management' }
+      { label: 'Sản phẩm', icon: 'fas fa-list-alt', route: '/admin/products-management' }
     ]
   },
     {

@@ -10,7 +10,7 @@ import { RequestBuilder } from '../../request-builder';
 
 import { ProductResponse } from '../../models/product-response';
 
-export interface ApiProductIdPut$Plain$Params {
+export interface ApiProductsIdPut$Plain$Params {
   id: number;
       body?: {
 'CategoryId'?: number;
@@ -30,8 +30,8 @@ export interface ApiProductIdPut$Plain$Params {
 }
 }
 
-export function apiProductIdPut$Plain(http: HttpClient, rootUrl: string, params: ApiProductIdPut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ProductResponse>> {
-  const rb = new RequestBuilder(rootUrl, apiProductIdPut$Plain.PATH, 'put');
+export function apiProductsIdPut$Plain(http: HttpClient, rootUrl: string, params: ApiProductsIdPut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ProductResponse>> {
+  const rb = new RequestBuilder(rootUrl, apiProductsIdPut$Plain.PATH, 'put');
   if (params) {
     rb.path('id', params.id, {});
     rb.body(params.body, 'multipart/form-data');
@@ -47,4 +47,4 @@ export function apiProductIdPut$Plain(http: HttpClient, rootUrl: string, params:
   );
 }
 
-apiProductIdPut$Plain.PATH = '/api/Product/{id}';
+apiProductsIdPut$Plain.PATH = '/api/Products/{id}';

@@ -10,28 +10,14 @@ import { RequestBuilder } from '../../request-builder';
 
 import { ProductResponse } from '../../models/product-response';
 
-export interface ApiProductPost$Json$Params {
-      body?: {
-'CategoryId'?: number;
-'Name'?: string;
-'Description'?: string;
-'Price'?: number;
-'Brand'?: string;
-'Material'?: string;
-'Color'?: string;
-'StockQuantity'?: number;
-'Dimensions'?: string;
-'Weight'?: number;
-'WarrantyMonths'?: number;
-'OriginCountry'?: string;
-'Images'?: Array<Blob>;
-}
+export interface ApiProductsIdGet$Json$Params {
+  id: number;
 }
 
-export function apiProductPost$Json(http: HttpClient, rootUrl: string, params?: ApiProductPost$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<ProductResponse>> {
-  const rb = new RequestBuilder(rootUrl, apiProductPost$Json.PATH, 'post');
+export function apiProductsIdGet$Json(http: HttpClient, rootUrl: string, params: ApiProductsIdGet$Json$Params, context?: HttpContext): Observable<StrictHttpResponse<ProductResponse>> {
+  const rb = new RequestBuilder(rootUrl, apiProductsIdGet$Json.PATH, 'get');
   if (params) {
-    rb.body(params.body, 'multipart/form-data');
+    rb.path('id', params.id, {});
   }
 
   return http.request(
@@ -44,4 +30,4 @@ export function apiProductPost$Json(http: HttpClient, rootUrl: string, params?: 
   );
 }
 
-apiProductPost$Json.PATH = '/api/Product';
+apiProductsIdGet$Json.PATH = '/api/Products/{id}';

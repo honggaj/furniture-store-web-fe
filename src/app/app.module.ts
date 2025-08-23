@@ -18,22 +18,21 @@ import { InputTextModule } from 'primeng/inputtext';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 import { FormsModule } from '@angular/forms';
+import { CustomerLayoutComponent } from './customer/customer-layout/customer-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    CustomerLayoutComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule, // 👈 Thêm cái này
     AppRoutingModule,
     HttpClientModule,
-    TableModule,
-    PaginatorModule,
-    ButtonModule,
-    InputTextModule,
+ 
     FormsModule
   ],
   providers: [

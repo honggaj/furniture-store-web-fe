@@ -25,9 +25,8 @@ export interface ApiProductIdPut$Json$Params {
 'Weight'?: number;
 'WarrantyMonths'?: number;
 'OriginCountry'?: string;
-'IsFeatured'?: boolean;
-'IsActive'?: boolean;
-'Images'?: Array<Blob>;
+'RemoveImageIds'?: Array<number>;
+'AddImages'?: Array<Blob>;
 }
 }
 

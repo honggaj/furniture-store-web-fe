@@ -24,8 +24,6 @@ export interface ApiProductPost$Plain$Params {
 'Weight'?: number;
 'WarrantyMonths'?: number;
 'OriginCountry'?: string;
-'IsFeatured'?: boolean;
-'IsActive'?: boolean;
 'Images'?: Array<Blob>;
 }
 }

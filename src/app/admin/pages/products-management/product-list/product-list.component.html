@@ -1,0 +1,83 @@
+<!-- Toolbar -->
+<div class="flex flex-col sm:flex-row justify-between items-center mb-4 gap-2">
+  <!-- Search -->
+  <div class="relative w-full sm:w-72">
+    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-blue-400 text-lg">
+      <i class="fas fa-search"></i>
+    </span>
+    <input type="text" placeholder="Tìm kiếm sản phẩm..." [(ngModel)]="keyword" (input)="onSearchInput()"
+      class="w-full pl-10 pr-3 py-2 border text-gray-400 border-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-400" />
+  </div>
+
+  <!-- Add button -->
+  <button (click)="addProduct()"
+    class="bg-blue-500 text-white px-4 py-2 hover:bg-blue-600 transition-colors cursor-pointer">
+    + Thêm sản phẩm
+  </button>
+</div>
+
+<!-- State: loading / error / empty -->
+<div *ngIf="loading" class="text-sm text-gray-500 mb-2">Đang tải...</div>
+<div *ngIf="error" class="text-sm text-red-600 mb-2">{{ error }}</div>
+
+<!-- Table -->
+<div class="overflow-x-auto shadow-sm" *ngIf="!loading">
+  <table class="min-w-full divide-y divide-gray-200">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="px-4 py-2 text-left text-gray-600">Ảnh</th>
+        <th class="px-4 py-2 text-left text-gray-600">Tên sản phẩm</th>
+        <th class="px-4 py-2 text-left text-gray-600">Giá</th>
+        <th class="px-4 py-2 text-left text-gray-600">Số lượng</th>
+        <th class="px-4 py-2 text-left text-gray-600">Mô tả</th>
+        <th class="px-4 py-2 text-left text-gray-600">Trạng thái</th>
+        <th class="px-4 py-2 text-center text-gray-600">Thao tác</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      <tr *ngFor="let product of products" class="hover:bg-gray-50 transition-colors">
+        <td class="px-4 py-2">
+  <div class="flex gap-1">
+<td class="px-4 py-2">
+  <img *ngIf="product.imageUrls && product.imageUrls.length > 0"
+       [src]="'http://localhost:5291' + product.imageUrls[0]"
+       alt="{{ product.name }}"
+       class="w-20 h-16 object-cover rounded" />
+ 
+</td>
+
+
+    <span *ngIf="!product.imageUrls || product.imageUrls.length === 0" class="text-gray-400">No Image</span>
+  </div>
+</td>
+
+        <td class="px-4 py-2">{{ product.name }}</td>
+        <td class="px-4 py-2">{{ product.price |number:'1.0-0' }} VNĐ</td>
+        <td class="px-4 py-2">{{ product.stockQuantity }}</td>
+        <td class="px-4 py-2 truncate max-w-[320px]">{{ product.description || '-' }}</td>
+
+        <td class="px-4 py-2">
+          <select [(ngModel)]="product.isActive" (change)="onStatusChange(product)"
+            class="border border-gray-300 px-2 py-1 focus:outline-none focus:ring-1 cursor-pointer"
+            [ngClass]="product.isActive ? 'text-green-600' : 'text-red-600'">
+            <option [ngValue]="true">Còn bán</option>
+            <option [ngValue]="false">Ngừng bán</option>
+          </select>
+        </td>
+
+        <td class="px-4 py-2 text-center flex justify-center gap-2">
+          <button (click)="editProduct(product)" class="text-blue-500 hover:text-blue-700 cursor-pointer">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button (click)="deleteProduct(product.productId!)" class="text-red-500 hover:text-red-700 cursor-pointer">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+
+      <tr *ngIf="products?.length === 0">
+        <td colspan="7" class="px-4 py-6 text-center text-gray-400">Không có sản phẩm nào.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

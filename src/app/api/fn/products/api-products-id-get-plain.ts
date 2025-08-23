@@ -10,31 +10,14 @@ import { RequestBuilder } from '../../request-builder';
 
 import { ProductResponse } from '../../models/product-response';
 
-export interface ApiProductIdPut$Plain$Params {
+export interface ApiProductsIdGet$Plain$Params {
   id: number;
-      body?: {
-'CategoryId'?: number;
-'Name'?: string;
-'Description'?: string;
-'Price'?: number;
-'Brand'?: string;
-'Material'?: string;
-'Color'?: string;
-'StockQuantity'?: number;
-'Dimensions'?: string;
-'Weight'?: number;
-'WarrantyMonths'?: number;
-'OriginCountry'?: string;
-'RemoveImageIds'?: Array<number>;
-'AddImages'?: Array<Blob>;
-}
 }
 
-export function apiProductIdPut$Plain(http: HttpClient, rootUrl: string, params: ApiProductIdPut$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ProductResponse>> {
-  const rb = new RequestBuilder(rootUrl, apiProductIdPut$Plain.PATH, 'put');
+export function apiProductsIdGet$Plain(http: HttpClient, rootUrl: string, params: ApiProductsIdGet$Plain$Params, context?: HttpContext): Observable<StrictHttpResponse<ProductResponse>> {
+  const rb = new RequestBuilder(rootUrl, apiProductsIdGet$Plain.PATH, 'get');
   if (params) {
     rb.path('id', params.id, {});
-    rb.body(params.body, 'multipart/form-data');
   }
 
   return http.request(
@@ -47,4 +30,4 @@ export function apiProductIdPut$Plain(http: HttpClient, rootUrl: string, params:
   );
 }
 
-apiProductIdPut$Plain.PATH = '/api/Product/{id}';
+apiProductsIdGet$Plain.PATH = '/api/Products/{id}';
