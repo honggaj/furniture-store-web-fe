@@ -7,6 +7,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { StoreComponent } from './pages/store/store.component';
 import { CustomerLayoutComponent } from './customer-layout/customer-layout.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselModule } from 'primeng/carousel';
 
 
 @NgModule({
@@ -15,11 +19,15 @@ import { CustomerLayoutComponent } from './customer-layout/customer-layout.compo
     HomeComponent,
     AboutComponent,
     StoreComponent,
-    CustomerLayoutComponent
+    CustomerLayoutComponent,
+    BannerComponent
   ],
   imports: [
     CommonModule,
     CustomerRoutingModule,
+    FormsModule,
+    NgbModule,
+    CarouselModule
     
     
   ]
