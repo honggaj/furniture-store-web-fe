@@ -7,12 +7,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/admin.module').then(m=>m.AdminModule)
   },
-  // {
-  //   path: 'user',
-  //   loadChildren: () =>
-  //     import('./user/user.module').then(m=>m.UserModule)
-  // },
-  { path: '**', redirectTo: '/admin' } // fallback
+  {
+    path: 'customer',
+    loadChildren: () =>
+      import('./customer/customer.module').then(m=>m.CustomerModule)
+  },
+  { path: '**', redirectTo: '/customer' } // fallback
 ];
 
 
