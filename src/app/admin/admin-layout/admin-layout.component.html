@@ -1,53 +1,62 @@
+<!-- app.component.html -->
 <div class="min-h-screen flex bg-gray-50">
+
   <!-- Sidebar -->
-  <aside class="bg-white border-r border-gray-200 transition-all duration-300 ease-in-out
-           h-screen overflow-hidden hover:overflow-y-auto" [ngClass]="isSidebarOpen ? 'w-64' : 'w-16'">
+  <aside 
+    class="bg-white border-r border-gray-200 transition-all duration-300 ease-in-out
+           h-screen overflow-y-auto fixed top-0 left-0 z-40"
+    [ngClass]="isSidebarOpen ? 'w-64' : 'w-16'">
+
     <!-- Logo -->
-    <div class="flex items-center gap-2 px-4 py-4  border-gray-200">
-      <img src="https://storage.googleapis.com/a1aa/image/66948c63-684a-463f-042a-ccd61c9cbb42.jpg" alt="Logo"
-        class="w-6 h-6 flex-shrink-0" />
+    <div class="flex items-center gap-2 px-4 py-4 border-b border-gray-200">
+      <img src="https://storage.googleapis.com/a1aa/image/66948c63-684a-463f-042a-ccd61c9cbb42.jpg" 
+           alt="Logo" class="w-6 h-6 flex-shrink-0" />
       <span class="font-medium text-sm text-gray-800 transition-opacity duration-300"
-        [ngClass]="isSidebarOpen ? 'opacity-100' : 'opacity-0'">FurniWorld</span>
+            [ngClass]="isSidebarOpen ? 'opacity-100' : 'opacity-0'">FurniWorld</span>
     </div>
 
     <!-- Menu -->
     <nav class="mt-6 px-3">
       <ng-container *ngFor="let section of menuSections">
-        <!-- Section title -->
         <p class="mb-3 mt-6 px-2 text-[11px] font-medium text-gray-400 uppercase tracking-wide transition-opacity duration-300"
-          [ngClass]="isSidebarOpen ? 'opacity-100' : 'opacity-0'">
+           [ngClass]="isSidebarOpen ? 'opacity-100' : 'opacity-0'">
           {{ section.title }}
         </p>
 
         <ul class="space-y-1">
           <li *ngFor="let item of section.items">
             <a (click)="setActive(item.label)" [routerLink]="item.route"
-              class="flex items-center gap-2 px-3 py-3 cursor-pointer text-sm transition-all border-r-4" [ngClass]="{
-    'text-blue-600 bg-blue-50 font-medium border-blue-600': activeItem === item.label,
-    'text-gray-700 hover:bg-gray-100 border-transparent': activeItem !== item.label
-  }" [title]="!isSidebarOpen ? item.label : ''">
+               class="flex items-center gap-2 px-3 py-3 cursor-pointer text-sm transition-all border-r-4"
+               [ngClass]="{
+                  'text-blue-600 bg-blue-50 font-medium border-blue-600': activeItem === item.label,
+                  'text-gray-700 hover:bg-gray-100 border-transparent': activeItem !== item.label
+                }"
+               [title]="!isSidebarOpen ? item.label : ''">
               <i [class]="item.icon + ' flex-shrink-0'"
-                [ngClass]="activeItem === item.label ? 'text-blue-600' : 'text-gray-500'"></i>
-              <span class="transition-opacity duration-300" [ngClass]="isSidebarOpen ? 'opacity-100' : 'opacity-0'">
+                 [ngClass]="activeItem === item.label ? 'text-blue-600' : 'text-gray-500'"></i>
+              <span class="transition-opacity duration-300" 
+                    [ngClass]="isSidebarOpen ? 'opacity-100' : 'opacity-0'">
                 {{ item.label }}
               </span>
             </a>
-
           </li>
         </ul>
       </ng-container>
     </nav>
+
   </aside>
 
-  <!-- Main Content Area -->
-  <div class="flex-1 flex flex-col">
-    <!-- Top Navigation Bar -->
+  <!-- Main content -->
+  <div class="flex-1 flex flex-col transition-all duration-300" 
+       [ngStyle]="{'margin-left.px': isSidebarOpen ? 256 : 64}">
+
+    <!-- Header -->
     <header class="bg-white border-b border-gray-200 px-4 py-2 sticky top-0 z-50">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-3">
           <!-- Sidebar Toggle Button -->
           <button (click)="toggleSidebar()"
-            class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md p-2 cursor-pointer">
+                  class="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md p-2 cursor-pointer">
             <i class="fas fa-bars text-sm"></i>
           </button>
 
@@ -62,12 +71,10 @@
 
         <!-- Right Side Icons -->
         <div class="flex items-center gap-4">
-          <!-- GitHub Link -->
           <a class="text-gray-500 hover:text-gray-700 text-base" href="#" aria-label="GitHub">
             <i class="fab fa-github"></i>
           </a>
 
-          <!-- Notifications -->
           <button class="relative text-gray-500 hover:text-gray-700 focus:outline-none" aria-label="Notifications">
             <i class="fas fa-bell text-base"></i>
             <span
@@ -76,10 +83,9 @@
             </span>
           </button>
 
-          <!-- User Profile -->
           <div class="flex items-center gap-2 cursor-pointer">
             <img alt="User avatar" class="w-7 h-7 rounded-full"
-              src="https://storage.googleapis.com/a1aa/image/805c552e-1615-4ed4-45ca-36344f70cc19.jpg" />
+                 src="https://storage.googleapis.com/a1aa/image/805c552e-1615-4ed4-45ca-36344f70cc19.jpg" />
             <span class="font-medium text-sm text-gray-800">John Doe</span>
           </div>
         </div>
@@ -87,8 +93,9 @@
     </header>
 
     <!-- Router Outlet -->
-    <main class="flex-1 p-4 bg-gray-50 overflow-auto">
+    <main class="flex-1 p-4 bg-gray-50 overflow-auto h-screen">
       <router-outlet></router-outlet>
     </main>
+
   </div>
 </div>

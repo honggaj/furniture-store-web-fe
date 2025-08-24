@@ -1,0 +1,49 @@
+<p-carousel *ngIf="!loading"
+            [value]="products"
+            [numVisible]="5"
+            [numScroll]="1"
+            [circular]="true"
+            [responsiveOptions]="responsiveOptions"
+            autoplayInterval="3000">
+
+  <ng-template let-product pTemplate="item">
+    <div class="bg-white shadow border border-gray-200 p-4 hover:shadow-lg rounded-md transition mx-2">
+      
+      <!-- Ảnh -->
+      <div class="w-full h-40">
+        <img *ngIf="product.imageUrls?.length; else noImg"
+             [src]="'http://localhost:5168' + (product.imageUrls?.[0] || '')"
+             alt="{{ product.name }}"
+             class="w-full h-40 object-cover rounded" />
+      </div>
+
+      <ng-template #noImg>
+        <div class="w-full h-40 flex items-center justify-center text-gray-400">
+          No Image
+        </div>
+      </ng-template>
+
+      <!-- Thông tin -->
+      <h3 class="font-semibold mt-2 truncate">{{ product.name }}</h3>
+      <p class="text-sm text-gray-500 truncate">{{ product.categoryName }}</p>
+      <p class="text-blue-600 font-bold">
+        {{ product.price | number:'1.0-0' }} VNĐ
+      </p>
+
+      <!-- Buttons -->
+      <div class="flex justify-between items-center mt-2">
+        <div class="font-semibold text-xl">{{ '$' + product.price }}</div>
+        <div class="flex space-x-2">
+          <!-- Favorite -->
+          <button class="px-2 py-1 rounded border border-gray-200 text-stone-600  hover:bg-gray-200 transition cursor-pointer">
+  <i class="far fa-heart"></i>
+          </button>
+          <!-- Add to cart -->
+          <button class="px-2 py-1  bg-stone-600 rounded text-white hover:bg-stone-700 transition cursor-pointer">
+  <i class="fas fa-shopping-cart"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-carousel>

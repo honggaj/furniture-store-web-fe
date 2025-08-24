@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { catchError, debounceTime, distinctUntilChanged, of, Subject, Subscription, switchMap } from 'rxjs';
 import { Router } from '@angular/router';
 import { ProductResponse } from '../../../../api/models';
-import { ProductService } from '../../../../api/services';
+import { ProductsService } from '../../../../api/services';
+
 
 @Component({
   selector: 'app-product-list',
@@ -19,7 +20,7 @@ export class ProductListComponent { products: ProductResponse[] = [];
   private search$ = new Subject<string>();
   private sub?: Subscription;
 
-  constructor(private productService: ProductService, private router:Router) {}
+  constructor(private productService: ProductsService, private router:Router) {}
 
   ngOnInit(): void {
     this.loadProducts(); // initial load
@@ -33,7 +34,7 @@ export class ProductListComponent { products: ProductResponse[] = [];
           this.loading = true;
           this.error = '';
           // server-side search: GET /api/product?keyword=kw
-          return this.productService.apiProductSearchGet$Json({ name: kw }).pipe(
+          return this.productService.apiProductsSearchGet$Json({ name: kw }).pipe(
             catchError(err => {
               this.error = 'Tìm kiếm lỗi. Thử lại sau.';
               console.error(err);
@@ -54,14 +55,15 @@ export class ProductListComponent { products: ProductResponse[] = [];
 
 loadProducts(): void {
   this.loading = true;
-  this.productService.apiProductGet$Json()
+  this.productService.apiProductsGet$Json()
     .subscribe({
       next: res => {
         // Không map gì, dùng trực tiếp imageUrls
-        this.products = res.map(p => ({
-          ...p,
-          imageUrls: p.imageUrls || [] // đảm bảo luôn có array
-        }));
+     this.products = res.map(p => ({
+  ...p,
+  imageUrls: p.images || []  // đổi từ images → imageUrls
+}));
+
         this.allProductsBackup = this.products;
         this.loading = false;
       },
@@ -71,6 +73,10 @@ loadProducts(): void {
         this.loading = false;
       }
     });
+}
+// product-list.component.ts
+getColorNames(product: ProductResponse): string {
+  return product?.colors?.map(c => c.name).join(', ') || '-';
 }
 
 
@@ -93,11 +99,24 @@ loadProducts(): void {
 
   deleteProduct(id: number): void {
     // gọi API xóa -> reload
-    this.productService.apiProductIdDelete({ id }).subscribe(() => this.loadProducts());
+    this.productService.apiProductsIdDelete({ id }).subscribe(() => this.loadProducts());
   }
-
   onStatusChange(p: ProductResponse): void {
-    // gọi API cập nhật trạng thái nếu có endpoint
-    // this.api.apiProductIdPatch({ id: p.productId, body: { isActive: p.isActive } }).subscribe();
-  }
+  this.productService.apiProductsIdToggleActivePatch$Json({
+    id: p.productId!,
+  }).subscribe({
+    next: () => console.log("✅ Cập nhật trạng thái thành công"),
+    error: err => console.error("❌ Lỗi cập nhật trạng thái", err)
+  });
+}
+
+onFeaturedChange(p: ProductResponse): void {
+  this.productService.apiProductsIdToggleFeaturedPatch$Json({
+    id: p.productId!,
+  }).subscribe({
+    next: () => console.log("✅ Cập nhật nổi bật thành công"),
+    error: err => console.error("❌ Lỗi cập nhật nổi bật", err)
+  });
+}
+
 }

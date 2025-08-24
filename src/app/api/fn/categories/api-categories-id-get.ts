@@ -9,16 +9,14 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface ApiProductsIdFeaturePatch$Params {
+export interface ApiCategoriesIdGet$Params {
   id: number;
-  status?: boolean;
 }
 
-export function apiProductsIdFeaturePatch(http: HttpClient, rootUrl: string, params: ApiProductsIdFeaturePatch$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-  const rb = new RequestBuilder(rootUrl, apiProductsIdFeaturePatch.PATH, 'patch');
+export function apiCategoriesIdGet(http: HttpClient, rootUrl: string, params: ApiCategoriesIdGet$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, apiCategoriesIdGet.PATH, 'get');
   if (params) {
     rb.path('id', params.id, {});
-    rb.query('status', params.status, {});
   }
 
   return http.request(
@@ -31,4 +29,4 @@ export function apiProductsIdFeaturePatch(http: HttpClient, rootUrl: string, par
   );
 }
 
-apiProductsIdFeaturePatch.PATH = '/api/Products/{id}/feature';
+apiCategoriesIdGet.PATH = '/api/Categories/{id}';

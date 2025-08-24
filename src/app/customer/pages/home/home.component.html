@@ -1,1 +1,47 @@
-<p>home works!</p>
+<app-banner></app-banner>
+<app-products-carousel></app-products-carousel>
+<section class="p-6 bg-zinc-50">
+  <div class="max-w-7xl mx-auto space-y-6">
+
+    <!-- Row 1: Ảnh + Text -->
+    <div class="flex flex-col lg:flex-row gap-4 items-center">
+      <div class="flex-1 bg-gray-300 h-40 flex items-center justify-center rounded-lg">
+        Ảnh 1
+      </div>
+      <div class="flex-1 bg-gray-100 p-4 rounded-lg">
+        <p class="text-stone-800 text-center lg:text-left text-base sm:text-lg leading-relaxed">
+          Khám phá bộ sưu tập nội thất hiện đại với thiết kế tinh tế, chất liệu cao cấp và màu sắc sang trọng. 
+          Mỗi sản phẩm đều được lựa chọn kỹ lưỡng để mang lại sự thoải mái và đẳng cấp cho không gian sống của bạn.
+        </p>
+      </div>
+    </div>
+
+    <!-- Row 2: 2 ảnh + text -->
+    <div class="flex flex-col sm:flex-row lg:flex-row gap-4 items-center">
+      <div class="flex-1 bg-gray-300 h-40 flex items-center justify-center rounded-lg">
+        Ảnh 2
+      </div>
+      <div class="flex-1 bg-gray-200 p-4 rounded-lg">
+        <p class="text-stone-800 text-center lg:text-left text-base sm:text-lg leading-relaxed">
+          Mang đến trải nghiệm tiện nghi và phong cách cho ngôi nhà của bạn – từ phòng khách, phòng ăn đến phòng ngủ, tất cả đều được chăm chút từng chi tiết.
+        </p>
+      </div>
+      <div class="flex-1 bg-gray-300 h-40 flex items-center justify-center rounded-lg lg:block hidden">
+        Ảnh 3
+      </div>
+    </div>
+
+    <!-- Row 3: Ảnh ngang full width -->
+    <div class="bg-gray-300 h-40 flex items-center justify-center rounded-lg">
+      Ảnh ngang
+    </div>
+
+    <!-- Row 4: Ảnh 3 cho mobile/tablet -->
+    <div class="bg-gray-300 h-40 flex items-center justify-center rounded-lg lg:hidden">
+      Ảnh 3
+    </div>
+
+  </div>
+</section>
+
+<app-featured-products></app-featured-products>

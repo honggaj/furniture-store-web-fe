@@ -8,11 +8,11 @@ const routes: Routes = [
       import('./admin/admin.module').then(m=>m.AdminModule)
   },
   {
-    path: 'customer',
+    path: 'furnistore',
     loadChildren: () =>
       import('./customer/customer.module').then(m=>m.CustomerModule)
   },
-  { path: '**', redirectTo: '/customer' } // fallback
+  { path: '**', redirectTo: '/furnistore' } // fallback
 ];
 
 

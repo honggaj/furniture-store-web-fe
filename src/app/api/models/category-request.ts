@@ -5,5 +5,4 @@
 export interface CategoryRequest {
   description?: string | null;
   name?: string | null;
-  parentId?: number | null;
 }

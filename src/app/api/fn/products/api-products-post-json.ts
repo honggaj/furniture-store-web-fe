@@ -16,15 +16,12 @@ export interface ApiProductsPost$Json$Params {
 'Name'?: string;
 'Description'?: string;
 'Price'?: number;
-'Brand'?: string;
-'Material'?: string;
-'Color'?: string;
 'StockQuantity'?: number;
-'Dimensions'?: string;
-'Weight'?: number;
-'WarrantyMonths'?: number;
-'OriginCountry'?: string;
-'Images'?: Array<Blob>;
+'IsActive'?: boolean;
+'IsFeatured'?: boolean;
+'ColorIds'?: Array<number>;
+'NewImages'?: Array<Blob>;
+'DeleteImageIds'?: Array<number>;
 }
 }
 

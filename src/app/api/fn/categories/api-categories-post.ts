@@ -8,17 +8,16 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { CategoryRequest } from '../../models/category-request';
 
-export interface ApiProductsIdActivePatch$Params {
-  id: number;
-  status?: boolean;
+export interface ApiCategoriesPost$Params {
+      body?: CategoryRequest
 }
 
-export function apiProductsIdActivePatch(http: HttpClient, rootUrl: string, params: ApiProductsIdActivePatch$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-  const rb = new RequestBuilder(rootUrl, apiProductsIdActivePatch.PATH, 'patch');
+export function apiCategoriesPost(http: HttpClient, rootUrl: string, params?: ApiCategoriesPost$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
+  const rb = new RequestBuilder(rootUrl, apiCategoriesPost.PATH, 'post');
   if (params) {
-    rb.path('id', params.id, {});
-    rb.query('status', params.status, {});
+    rb.body(params.body, 'application/*+json');
   }
 
   return http.request(
@@ -31,4 +30,4 @@ export function apiProductsIdActivePatch(http: HttpClient, rootUrl: string, para
   );
 }
 
-apiProductsIdActivePatch.PATH = '/api/Products/{id}/active';
+apiCategoriesPost.PATH = '/api/Categories';

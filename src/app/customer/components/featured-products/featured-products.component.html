@@ -1,0 +1,48 @@
+<div class="max-w-full mx-auto px-4 py-8">
+  <h2 class="text-2xl font-semibold mb-6">✨ Sản phẩm nổi bật</h2>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="text-gray-500">Đang tải sản phẩm...</div>
+
+  <!-- Grid list -->
+  <div *ngIf="!loading" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div *ngFor="let product of products" 
+         class="bg-white   transition">
+
+      <!-- Ảnh -->
+      <div class="w-full h-auto">
+        <img *ngIf="product.images?.length; else noImg"
+             [src]="'http://localhost:5168' + (product.images?.[0] || '')"
+             alt="{{ product.name }}"
+             class="w-50 h-64 object-cover " />
+      </div>
+
+      <ng-template #noImg>
+        <div class="w-full h-40 flex items-center justify-center text-gray-400">
+          No Image
+        </div>
+      </ng-template>
+
+      <!-- Thông tin -->
+      <h3 class="font-semibold mt-2 truncate">{{ product.name }}</h3>
+      <p class="text-blue-600 font-bold">
+        {{ product.price | number:'1.0-0' }} VNĐ
+      </p>
+
+      <!-- Buttons -->
+      <div class="flex justify-between items-center mt-2">
+        <div class="font-semibold text-xl">{{ '$' + product.price }}</div>
+        <div class="flex space-x-2">
+          <!-- Favorite -->
+          <button class="px-2 py-1 rounded border border-gray-300 text-stone-600 hover:bg-red-500 hover:text-white transition cursor-pointer">
+            <i class="far fa-heart"></i>
+          </button>
+          <!-- Add to cart -->
+          <button class="px-2 py-1 bg-stone-600 rounded text-white hover:bg-stone-700 transition cursor-pointer">
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -13,20 +13,16 @@ import { ProductResponse } from '../../models/product-response';
 export interface ApiProductsIdPut$Plain$Params {
   id: number;
       body?: {
-'CategoryId'?: number;
 'Name'?: string;
 'Description'?: string;
 'Price'?: number;
-'Brand'?: string;
-'Material'?: string;
-'Color'?: string;
 'StockQuantity'?: number;
-'Dimensions'?: string;
-'Weight'?: number;
-'WarrantyMonths'?: number;
-'OriginCountry'?: string;
-'RemoveImageIds'?: Array<number>;
-'AddImages'?: Array<Blob>;
+'IsActive'?: boolean;
+'IsFeatured'?: boolean;
+'CategoryId'?: number;
+'ColorIds'?: Array<number>;
+'NewImages'?: Array<Blob>;
+'DeleteImageIds'?: Array<number>;
 }
 }
 

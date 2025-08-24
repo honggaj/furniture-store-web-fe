@@ -7,11 +7,11 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { AuthService } from './services/auth.service';
-import { CartService } from './services/cart.service';
-import { CategoryService } from './services/category.service';
-import { ProductService } from './services/product.service';
+import { CategoriesService } from './services/categories.service';
+import { ColorsService } from './services/colors.service';
+import { ProductsService } from './services/products.service';
+import { ReviewsService } from './services/reviews.service';
 import { UserService } from './services/user.service';
-import { WeatherForecastService } from './services/weather-forecast.service';
 
 /**
  * Module that provides all services and configuration.
@@ -22,11 +22,11 @@ import { WeatherForecastService } from './services/weather-forecast.service';
   declarations: [],
   providers: [
     AuthService,
-    CartService,
-    CategoryService,
-    ProductService,
+    CategoriesService,
+    ColorsService,
+    ProductsService,
+    ReviewsService,
     UserService,
-    WeatherForecastService,
     ApiConfiguration
   ],
 })
