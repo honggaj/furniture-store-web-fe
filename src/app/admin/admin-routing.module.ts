@@ -21,6 +21,13 @@ const routes: Routes = [
             m => m.ProductsManagementModule
           ),
       },
+       {
+        path: 'colors-management',
+        loadChildren: () =>
+          import('./pages/colors-management/colors-management.module').then(
+            m => m.ColorManagementModule
+          ),
+      },
       { path: '', redirectTo: 'users-management', pathMatch: 'full' },
     ]
   }

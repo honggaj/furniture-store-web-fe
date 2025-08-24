@@ -5,10 +5,11 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { UsersManagementModule } from './pages/users-management/users-management.module';
 import { FormsModule } from '@angular/forms';
 import { ProductsManagementModule } from './pages/products-management/products-management.module';
-
+import { ColorManagementModule } from './pages/colors-management/colors-management.module';
 
 @NgModule({
   declarations: [
+  
   
   ],
   imports: [
@@ -16,7 +17,8 @@ import { ProductsManagementModule } from './pages/products-management/products-m
     AdminRoutingModule,
     UsersManagementModule,
     FormsModule,
-    ProductsManagementModule
+    ProductsManagementModule,
+    ColorManagementModule
   ]
 })
 export class AdminModule { }
